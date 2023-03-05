@@ -18,4 +18,20 @@ class SessionManager {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('products', jsonEncode(products));
   }
+
+  static Future<List<dynamic>> getBills() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? localData = prefs.getString('bills');
+    // await prefs.remove('bills');
+    List<dynamic> bills = [];
+    if (localData != null) {
+      bills = jsonDecode(localData);
+    }
+    return bills;
+  }
+
+  static Future<void> setBills(List<dynamic> bills) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('bills', jsonEncode(bills));
+  }
 }
