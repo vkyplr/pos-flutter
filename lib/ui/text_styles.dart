@@ -50,4 +50,18 @@ class TextStyles {
         fontWeight: FontWeight.w600,
         color: Colors.black.withOpacity(0.8));
   }
+
+  static TextStyle body75() {
+    return TextStyle(
+        fontSize: 5.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.black.withOpacity(0.8));
+  }
+
+  static TextStyle body7() {
+    return TextStyle(
+        fontSize: 4.sp,
+        fontWeight: FontWeight.w600,
+        color: Colors.black.withOpacity(0.8));
+  }
 }

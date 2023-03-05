@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:inventory/models/product.dart';
 import 'package:inventory/ui/app_colors.dart';
 import 'package:inventory/ui/text_styles.dart';
-import 'package:inventory/util/common_util.dart';
 import 'package:inventory/util/session_manager.dart';
 import 'package:sizer/sizer.dart';
 
@@ -80,7 +79,7 @@ class _ProductsState extends State<Products> {
                   TextField(
                     controller: name,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -108,7 +107,7 @@ class _ProductsState extends State<Products> {
                   TextField(
                     controller: quantity,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
@@ -141,7 +140,7 @@ class _ProductsState extends State<Products> {
                   TextField(
                     controller: costPrice,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
@@ -174,7 +173,7 @@ class _ProductsState extends State<Products> {
                   TextField(
                     controller: salePrice,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],

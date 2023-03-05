@@ -3,15 +3,19 @@ class Product {
   int quantity;
   int costPrice;
   int salePrice;
+  int id;
 
   Product(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.quantity,
       required this.costPrice,
       required this.salePrice});
 
   factory Product.fromJson(Map<String, dynamic> data) {
+    print(data);
     return Product(
+        id: int.parse(data['id'] ?? 0),
         name: data['name'] ?? '',
         quantity: int.parse(data['quantity'] ?? 0),
         costPrice: int.parse(data['costPrice'] ?? 0),
@@ -24,6 +28,7 @@ class Product {
 
   Map<String, String> toJson() {
     return {
+      'id': id.toString(),
       'name': name,
       'quantity': quantity.toString(),
       'costPrice': costPrice.toString(),

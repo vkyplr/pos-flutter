@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:inventory/screens/add_products_screen.dart';
+import 'package:inventory/screens/all_bills.dart';
+import 'package:inventory/screens/new_bill.dart';
 import 'package:inventory/screens/products.dart';
 import 'package:inventory/ui/text_styles.dart';
-import 'package:sizer/sizer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -17,6 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ashapura Medical and General Store'),
+        centerTitle: true,
         elevation: 0,
       ),
       backgroundColor: Colors.white,
@@ -24,58 +26,63 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(30),
         child: Row(
           children: <Widget>[
-            InkWell(
-              onTap: () {
+            ElevatedButton(
+              onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const AddProductsScreen()));
               },
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 76, 174, 255),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  'Add Product',
-                  style: TextStyles.body4().copyWith(color: Colors.white),
-                ),
+              style:
+                  ElevatedButton.styleFrom(padding: const EdgeInsets.all(20)),
+              child: Text(
+                'Add Product',
+                style: TextStyles.body5().copyWith(color: Colors.white),
               ),
             ),
             const SizedBox(
               width: 10,
             ),
-            InkWell(
-              onTap: () {
+            ElevatedButton(
+              onPressed: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Products()));
               },
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 76, 174, 255),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  'View Products',
-                  style: TextStyles.body4().copyWith(color: Colors.white),
-                ),
+              style:
+                  ElevatedButton.styleFrom(padding: const EdgeInsets.all(20)),
+              child: Text(
+                'View Products',
+                style: TextStyles.body5().copyWith(color: Colors.white),
               ),
             ),
             const SizedBox(
               width: 10,
             ),
-            InkWell(
-              onTap: () {},
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 32, 193, 128),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  'New Bill',
-                  style: TextStyles.body4().copyWith(color: Colors.white),
-                ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const NewBill()));
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 32, 193, 128),
+                  padding: const EdgeInsets.all(20)),
+              child: Text(
+                'Create Bill',
+                style: TextStyles.body5().copyWith(color: Colors.white),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AllBillsScreen()));
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 32, 193, 128),
+                  padding: const EdgeInsets.all(20)),
+              child: Text(
+                'View Bills',
+                style: TextStyles.body5().copyWith(color: Colors.white),
               ),
             )
           ],

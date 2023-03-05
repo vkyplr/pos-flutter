@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:inventory/models/product.dart';
@@ -95,12 +93,13 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
 
   void addProduct() async {
     if (validateForm()) {
+      List<dynamic> products = await SessionManager.getProducts();
       Product product = Product(
+          id: products.length + 1,
           costPrice: int.parse(costPrice.text),
           salePrice: int.parse(salePrice.text),
           name: name.text,
           quantity: int.parse(quantity.text));
-      List<dynamic> products = await SessionManager.getProducts();
       products.add(product.toJson());
       SessionManager.setProducts(products);
       showSnackBarAndPop();
@@ -131,7 +130,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
                   TextField(
                     controller: name,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -159,7 +158,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
                   TextField(
                     controller: quantity,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
@@ -192,7 +191,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
                   TextField(
                     controller: costPrice,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
@@ -225,7 +224,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
                   TextField(
                     controller: salePrice,
                     cursorHeight: 20,
-                    style: TextStyles.body5(),
+                    style: TextStyles.body6(),
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
