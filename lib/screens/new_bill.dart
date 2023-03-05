@@ -491,10 +491,33 @@ class _NewBillState extends State<NewBill> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 30, vertical: 20)),
                       onPressed: () async {
-                        List<dynamic> bills = await SessionManager.getBills();
+                        Map<int, int> billedProductIdMappedQuantity = {};
+                        for (BillProduct p in bill.billProducts) {
+                          billedProductIdMappedQuantity[p.product!.id] =
+                              p.quantity!;
+                        }
 
+                        // Reduce Product Quantity
+                        List<Product> newProducts = [...products];
+                        for (int i = 0; i < newProducts.length; ++i) {
+                          if (billedProductIdMappedQuantity
+                              .containsKey(newProducts[i].id)) {
+                            newProducts[i].quantity -=
+                                billedProductIdMappedQuantity[
+                                    newProducts[i].id]!;
+                          }
+                        }
+                        List<Map<String, String>> newProductsJson = [];
+                        newProducts.asMap().forEach((idx, element) {
+                          newProductsJson.add(element.toJson());
+                        });
+                        SessionManager.setProducts(newProductsJson);
+
+                        // Save Bill in Local Storega
+                        List<dynamic> bills = await SessionManager.getBills();
                         bills.add(bill.toJson());
                         await SessionManager.setBills(bills);
+
                         navigateToPrintBill();
                       },
                       child: Text(

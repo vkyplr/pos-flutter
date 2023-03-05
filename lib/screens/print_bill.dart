@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inventory/models/bill.dart';
 import 'package:inventory/screens/bill_view.dart';
+import 'package:inventory/screens/printable_bill_view.dart';
 import 'package:inventory/ui/text_styles.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class PrintBillScreen extends StatefulWidget {
   const PrintBillScreen({super.key, required this.bill});
@@ -35,7 +38,7 @@ class _PrintBillScreenState extends State<PrintBillScreen> {
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 20)),
-                onPressed: () async {},
+                onPressed: printBill,
                 child: Text(
                   'Print',
                   style: TextStyles.body6().copyWith(color: Colors.white),
@@ -44,5 +47,14 @@ class _PrintBillScreenState extends State<PrintBillScreen> {
         ),
       ),
     );
+  }
+
+  void printBill() async {
+    await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async =>
+            (await getPrintableBillView(widget.bill)).save());
+    // await Printing.sharePdf(
+    //     bytes: await (await getPrintableBillView(widget.bill)).save(),
+    //     filename: 'my-document.pdf');
   }
 }
